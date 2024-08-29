@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clickable Map of India</title>
+
+    <!-- Update the path to your external CSS if needed -->
+    <link rel="stylesheet" href="C:\Users\A12-51\Desktop\styles.css">
+    <h1>INDIA MAP</h1>
+    
+    <style>
+        h1 {
+            font-family: "Trebuchet MS", Verdana, sans-serif;
+            color: white;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black; /* Set body background color to black */
+            text-align: center;
+        }
+
+        .map-container {
+            background-color: white; /* Container with a white background for the map */
+            display: inline-block;
+            padding: 10px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .map-description {
+            color: white; /* Changed to white for contrast against black background */
+            padding: 10px;
+        }
+
+        .state {
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .state.active {
+            opacity: 0.5;
+        }
+
+        .maharashtra {
+            background-color: orange;
+        }
+
+        .tamil-nadu {
+            background-color: green;
+        }
+    </style>
+
+    <script>
+        function highlightState(state) {
+            // Remove active class from all states
+            document.querySelectorAll('.state').forEach(el => el.classList.remove('active'));
+            
+            // Add active class to the clicked state
+            document.querySelector(`.${state}`).classList.add('active');
+        }
+    </script>
+</head>
+<body>
+    <div class="map-container">
+        <!-- Importing the Indian map image -->
+        <img src="C:\Users\A12-51\Downloads\india-map-removebg-preview.png" alt="Map of India" usemap="#indiaMap" style="border: 5px solid red;">
+
+        <!-- Highlight layers for each state -->
+        <div class="state maharashtra" zstyle="width: 100px; height: 100px; top: 200px; left: 100px;"></div>
+        <div class="state tamil-nadu" style="width: 100px; height: 100px; top: 300px; left: 150px;"></div>
+    </div>
+
+    <!-- Defining clickable areas on the map -->
+    <map name="indiaMap">
+        <!-- Example for Maharashtra -->
+        <area shape="poly" coords="109,285,117,353,221,312,225,268,129,257" href="https://en.wikipedia.org/wiki/Maharashtra" alt="Maharashtra" onclick="highlightState('maharashtra');">
+        <!-- Example for Tamil Nadu -->
+        <area shape="poly" coords="160,426,178,485,221,398" href="https://en.wikipedia.org/wiki/Tamil_Nadu" alt="Tamil Nadu" onclick="highlightState('tamil-nadu');">
+        <!-- Add more areas for other states similarly -->
+    </map>
+
+    <p class="map-description">Click on a state to learn more about it.</p>
+</body>
+</html>
+
